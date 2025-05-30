@@ -1,0 +1,2 @@
+// Day3を完了にする（インデックス2）
+progressDataSO.FinishedDays[2] = true;
