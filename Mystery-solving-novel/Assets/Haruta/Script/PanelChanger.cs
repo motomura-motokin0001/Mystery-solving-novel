@@ -2,36 +2,43 @@ using UnityEngine;
 
 public class PanelChanger : MonoBehaviour
 {
-    public GameObject _LeftArrow;  // 左矢印ボタン
-    public GameObject _RightArrow; // 右矢印ボタン
+    public GameObject _LeftArrow;   // 左矢印ボタン
+    public GameObject _RightArrow;  // 右矢印ボタン
+    public int roomCount = 2;       // 部屋の数（Inspectorで設定可能）
+
+    private int currentRoomIndex = 0;     // 現在の部屋番号
+    private const float ROOM_WIDTH = 3000f; // 各部屋の横幅
 
     private void Start()
     {
-        // 初期状態では左矢印を非表示、右矢印のみ表示
-        HideArrows();
-        _RightArrow.SetActive(true);
+        UpdatePanel();
     }
 
-    public void HideArrows()
+    public void OnLeftAllow()
     {
-        // すべての矢印を非表示にする
-        _LeftArrow.SetActive(false);
-        _RightArrow.SetActive(false);
+        if (currentRoomIndex > 0)
+        {
+            currentRoomIndex--;
+            UpdatePanel();
+        }
     }
 
-    public void OnLeftAllow() 
+    public void OnRightAllow()
     {
-        // 左矢印が押されたとき、room0に移動
-        HideArrows();
-        _RightArrow.SetActive(true);
-        this.transform.localPosition = new Vector2(0, 0);
+        if (currentRoomIndex < roomCount - 1)
+        {
+            currentRoomIndex++;
+            UpdatePanel();
+        }
     }
 
-    public void OnRightAllow() 
+    private void UpdatePanel()
     {
-        // 右矢印が押されたとき、room1に移動
-        HideArrows();
-        _LeftArrow.SetActive(true);
-        this.transform.localPosition = new Vector2(-3000, 0);
+        // 部屋の位置を更新
+        this.transform.localPosition = new Vector2(-ROOM_WIDTH * currentRoomIndex, 0);
+
+        // 矢印の表示状態を更新
+        _LeftArrow.SetActive(currentRoomIndex > 0);
+        _RightArrow.SetActive(currentRoomIndex < roomCount - 1);
     }
 }
