@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-//ボタン押したら最初のシーンでフェードインしロードシーンを上書き召喚！それと同時に最初のシーンのを削除＆遷移先のシーンと差し替え。ロードシーンがフェードアウトしたらロードシーンを削除してあたかも遷移先のシーンがあったように見せる。
+
 public class SceneLoad : MonoBehaviour
 {
     [SerializeField] private string _RoadSceneName;
