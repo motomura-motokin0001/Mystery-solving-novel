@@ -8,7 +8,7 @@ public class TransformMove : MonoBehaviour
     [SerializeField] private RectTransform _TargetRectTransform;
     [SerializeField] private Vector2 _ViewPosition;
     [SerializeField] private Vector2 _HidePosition;
-    public static bool InventoryIsView = false;
+    private bool IsView = false;
 
     void Start()
     {
@@ -17,8 +17,8 @@ public class TransformMove : MonoBehaviour
 
     public void View_Hide()
     {
-        InventoryIsView = !InventoryIsView; // 表示状態をトグル
-        if (InventoryIsView)
+        IsView = !IsView; // 表示状態をトグル
+        if (IsView)
         {
             // 表示位置に移動
             _TargetRectTransform.DOAnchorPos(_ViewPosition, 0.5f);

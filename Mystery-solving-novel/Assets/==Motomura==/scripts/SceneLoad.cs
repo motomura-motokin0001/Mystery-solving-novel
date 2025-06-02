@@ -4,9 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoad : MonoBehaviour
 {
-    [SerializeField] private string _RoadSceneName;
+    [Tooltip("ロードシーンの名前")]
+    [SerializeField] private string _RoadSceneName = "EffectScene";
+    [Tooltip("遷移先のシーンの名前")]
     [SerializeField] private string NextSceneName;
+    [Tooltip("遷移元のシーンの名前")]
     [SerializeField] private string DestroySceneName;
+
     private float _EffectTime = 1.0f;
 
     public void Load()
