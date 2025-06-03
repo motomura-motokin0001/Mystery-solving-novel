@@ -29,4 +29,19 @@ public class TransformMove : MonoBehaviour
             _TargetRectTransform.DOAnchorPos(_HidePosition, 0.5f);
         }
     }
+
+    public void View_Hide_NotAnimation()
+    {
+        IsView = !IsView; // 表示状態をトグル
+        if (IsView)
+        {
+            // 表示位置に移動
+            _TargetRectTransform.anchoredPosition = _ViewPosition;
+        }
+        else
+        {
+            // 非表示位置に移動
+            _TargetRectTransform.anchoredPosition = _HidePosition;
+        }
+    }
 }
