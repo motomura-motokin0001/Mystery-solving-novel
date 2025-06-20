@@ -2,69 +2,29 @@ using UnityEngine;
 
 public class ItemBox : MonoBehaviour
 {
-    public GameObject[] Boxs; // アイテムボックスのスロット（UI Imageなど）
-    public Item.Type[] itemTypes; // 各スロットにどのアイテムが入ってるか記録
-
-    public static ItemBox instance;
+    public GameObject[] Boxs;  // アイテムボックスのスロット（配列）
+    public static ItemBox instance;  // インスタンスを作成（シングルトン）
 
     private void Awake()
     {
-        instance = this;
-        itemTypes = new Item.Type[Boxs.Length];
-        for (int i = 0; i < itemTypes.Length; i++)
-        {
-            itemTypes[i] = (Item.Type)(-1); // 空の状態を -1 で初期化
-        }
+        instance = this;  // 自身のインスタンスをセット
     }
 
     public void SetItem(Item.Type type)
     {
-        // すでに持っていたら追加しない
-        if (HasItem(type)) return;
-
-        for (int i = 0; i < Boxs.Length; i++)
-        {
-            if (!Boxs[i].activeSelf)
-            {
-                Boxs[i].SetActive(true);
-                itemTypes[i] = type;
-                Debug.Log("アイテム " + type + " をスロット " + i + " に追加");
-                break;
-            }
-        }
+        int index = (int)type;  // アイテムの種類に応じたスロットを取得
+        Boxs[index].SetActive(true);  // アイテムを取得するとスロットを表示
     }
 
     public bool CanUseItem(Item.Type type)
     {
-        for (int i = 0; i < itemTypes.Length; i++)
-        {
-            if (itemTypes[i] == type && Boxs[i].activeSelf)
-                return true;
-        }
-        return false;
+        int index = (int)type;
+        return Boxs[index].activeSelf;  // アイテムを持っているか確認
     }
 
     public void UseItem(Item.Type type)
     {
-        for (int i = 0; i < itemTypes.Length; i++)
-        {
-            if (itemTypes[i] == type)
-            {
-                Boxs[i].SetActive(false);
-                itemTypes[i] = (Item.Type)(-1);
-                Debug.Log("アイテム " + type + " を使用してスロット " + i + " を空にしました");
-                break;
-            }
-        }
-    }
-
-    private bool HasItem(Item.Type type)
-    {
-        for (int i = 0; i < itemTypes.Length; i++)
-        {
-            if (itemTypes[i] == type)
-                return true;
-        }
-        return false;
+        int index = (int)type;
+        Boxs[index].SetActive(false);  // アイテムを使用したら非表示にする
     }
 }
