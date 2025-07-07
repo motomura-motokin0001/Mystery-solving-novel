@@ -23,7 +23,7 @@ public class SceneLoad : MonoBehaviour
     IEnumerator IE()
     {
         Debug.Log("IE");
-        yield return new WaitForSeconds(_EffectTime);
+        yield return new WaitForSeconds(_EffectTime);//ロードシーンの演出時間を待つ
         SceneManager.LoadScene(NextSceneName,LoadSceneMode.Additive);//遷移先のシーンを召喚
         SceneManager.UnloadSceneAsync(DestroySceneName);//遷移元のシーンを削除
         SceneManager.UnloadSceneAsync(_RoadSceneName);//ロードシーンを削除
