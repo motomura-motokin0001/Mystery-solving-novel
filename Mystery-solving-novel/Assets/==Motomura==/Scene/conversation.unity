@@ -158,6 +158,8 @@ MonoBehaviour:
   characterImage: {fileID: 648117099}
   storyText: {fileID: 1751063379}
   characterName: {fileID: 1855814323}
+  <storyIndex>k__BackingField: 0
+  <textIndex>k__BackingField: 0
 --- !u!4 &328263834
 Transform:
   m_ObjectHideFlags: 0
